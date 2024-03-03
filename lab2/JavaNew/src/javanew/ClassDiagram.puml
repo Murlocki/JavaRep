@@ -1,0 +1,65 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+abstract class Account{
+    -open:boolean
+    -balance:float
+    --Constructors--
+    +Account():Account
+    --Methods--
+    +addMoney(summa:float)
+    +subMoney(summa:float):boolean
+    +check_balance():float
+    +close()
+    +toString():String
+    +equals(o:Object):boolean
+    --Getters--
+    +getSumma(): float
+    +getOpen(): boolean
+    --Setters--
+    +setSumma(summa:float)
+    +setOpen(open:boolean)
+}
+class SalaryAccount{
+    --Constructors--
+    +SalaryAccount():SalaryAccount
+    --Methods--
+    +completeAutoPayments()
+    +toString():String
+    +equals(o:Object):boolean
+}
+class CreditAccount{
+    --Constructors--
+    +CreditAccount(percent:float,creditTime:float):CreditAccount
+    --Methods--
+    +checkCreditTime():float
+    +equals(o:Object):boolean
+}
+class DepositAccount{
+    --Constructors--
+    +DepositAccount(percent:float,creditTime:float):DepositAccount
+    --Methods--
+    +calcPercentSum():float
+    +equals(o:Object):boolean
+}
+class DebtAccount{
+    -percent:float
+    -creditTime:float
+    --Constructors--
+    +DebtAccount(percent:float,creditTime:float):DebtAccount
+    --Methods--
+    +toString():String
+    +equals(o:Object):boolean
+    --Getters--
+    +getPercent(): float
+    +getCreditTime(): float
+    --Setters--
+    +setPercent(percent:float)
+    +setCreditTime(time:float)
+}
+
+DebtAccount<|-- CreditAccount
+DebtAccount<|-- DepositAccount
+Account<|-- DebtAccount
+Account<|-- SalaryAccount
+@enduml
