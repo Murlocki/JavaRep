@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="JavaNew">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/JavaNew/out/artifacts/JavaNew_jar/JavaNew.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

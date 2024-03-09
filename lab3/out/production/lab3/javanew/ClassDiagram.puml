@@ -1,0 +1,93 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+interface AccountAction{
+    --Methods--
+    +closeAccount()
+    +openAccount()
+}
+interface AccountHelpMethods {
+    +toString():String
+    +equals(o:Object):String;
+}
+
+interface ClientAccountAction {
+    +addMoney(summa:float);
+    +subMoney(summa:float):boolean;
+    +check_balance():float;
+}
+
+
+class SalaryAccount{
+    --Constructors--
+    +SalaryAccount():SalaryAccount
+    --Getters--
+    +getSumma():float
+    +getOpen():boolean
+    --Setters--
+    +setSumma(summa:float)
+    +setOpen(open:boolean)
+    --Methods--
+    +completeAutoPayments()
+    +toString():String
+    +equals(o:Object):boolean
+    +addMoney(summa:float)
+    +subMoney(summa:float):boolean
+    +check_balance():float
+    +closeAccount()
+    +openAccount()
+}
+class CreditAccount{
+    --Constructors--
+    +CreditAccount(percent:float,creditTime:float):CreditAccount
+    --Methods--
+    +checkCreditTime():float
+    +equals(o:Object):boolean
+}
+class DepositAccount{
+    --Constructors--
+    +DepositAccount(percent:float,creditTime:float):DepositAccount
+    --Methods--
+    +calcPercentSum():float
+    +equals(o:Object):boolean
+}
+class DebtAccount{
+    -percent:float
+    -creditTime:float
+    -balance:float
+    -open:boolean
+    --Constructors--
+    +DebtAccount(percent:float,creditTime:float):DebtAccount
+    --Methods--
+    +toString():String
+    +equals(o:Object):boolean
+    +addMoney(summa:float)
+    +subMoney(summa:float):boolean
+    +check_balance():float
+    +closeAccount()
+    +openAccount()
+    --Getters--
+    +getPercent(): float
+    +getCreditTime(): float
+    +getSumma():float
+    +getOpen():boolean
+    --Setters--
+    +setPercent(percent:float)
+    +setCreditTime(time:float)
+    +setSumma(summa:float)
+    +setOpen(open:boolean)
+}
+
+ClientAccountAction<|-- DebtAccount
+AccountAction<|-- DebtAccount
+AccountHelpMethods<|-- DebtAccount
+
+ClientAccountAction<|-- SalaryAccount
+AccountAction<|-- SalaryAccount
+AccountHelpMethods<|-- SalaryAccount
+
+DebtAccount<|-- CreditAccount
+DebtAccount<|-- DepositAccount
+
+
+@enduml
