@@ -1,0 +1,36 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+actor User
+boundary "combobox:ComboboxSelector" as cb
+entity "actionEvent:ActionEvent" as ac
+entity "actionListener:ActionListener" as al
+control "mainController: MainController" as mc
+boundary "mainInformationWindow:MainInformationWindow" as miw
+boundary "mainWindow:MainWindow" as mw
+entity "mainContainer:MainContainer" as mcont
+
+
+
+User -> cb: Выбрана машина
+cb --> ac: new ActionEvent object
+ac --> cb
+
+cb --> al: Вызов обработчика события
+al --> mc: Вызов метода putInformation(int id)
+mc --> miw: new MainInformationWindow object
+mc <-- miw
+
+mc --> mw: Обращение к объекту главного окна
+mw --> mcont:add(mainInformationWindow)
+mw <-- mcont
+
+mw --> mcont: revalidate()
+mw <-- mcont
+
+mw --> mc
+al <-- mc
+al --> cb
+cb --> User
+@enduml

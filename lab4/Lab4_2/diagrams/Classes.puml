@@ -1,0 +1,84 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class MainWindow{
+    -mainController:MainController
+    -MAINCONTAINER:Container
+    --Constructors--
+    +MainWindow(title:String):MainWindow
+    --Getters--
+    +getMainContainer():Container
+    --Methods--
+    +createMainWindow()
+}
+JFrame <|-- MainWindow
+MainWindow *-- MainController
+
+class MainInformationWindow {
+    -NAME:String
+    -CREATOR:String
+    -POWER:float
+    -imagePath:String
+    --Constructors--
+    +MainInformationWindow(name:String,creator:String,power:String,imagePath:String):MainInformationWindow
+    --Methods--
+    +createInformWindow():JPanel
+}
+
+MainController <-- MainInformationWindow
+
+class ShowImageFrame{
+    -IM:BufferedImage;
+    --Constructors--
+    +ShowImageFrame(path:String):ShowImageFrame
+    --Methods--
+    +printImage():JLabel
+}
+
+MainInformationWindow <-- ShowImageFrame
+
+class ComboBoxSelector{
+    -mainController:MainController
+    -dictionary:HashMap<String,Integer>
+    --Constructors--
+    +ComboBoxSelector(NamesIds:HashMap<String,Integer>,m:MainController): ComboBoxSelector
+    --Methods--
+    +getMaximumSize():Dimension
+}
+JComboBox <|--ComboBoxSelector
+MainWindow <-- ComboBoxSelector
+
+class  MainController{
+    -MAINWINDOW:MainWindow
+    -mainInformationWindow:JPanel
+    -MAINCONNECTION:DatabaseConnection
+    --Constructors--
+    +MainController(m:MainWindow):MainController
+    --Methods--
+    +getAllNamesAndId():HashMap<String,Integer>
+    +putInformation(id:int)
+}
+
+MainController *-- MainWindow
+MainController *-- DatabaseConnection
+
+class DatabaseConnection{
+    -connection:Connection
+    --Constructors--
+    +DatabaseConnection():DatabaseConnection
+    --Methods--
+    +getViaId(id:int):String[]
+    +getAllNamesAndId():HashMap<String,Integer>
+}
+
+
+class ActionListener{
+    --Constructors--
+    +ActionListener():ActionListener
+    --Methods--
+    +actionPerformed(e:ActionEvent)
+}
+
+ComboBoxSelector <-- ActionListener
+
+@enduml
