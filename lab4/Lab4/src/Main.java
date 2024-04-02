@@ -24,11 +24,11 @@ public class Main {
 //        JFrame f = new FlowLayoutWindow("Менеджер");
 //        f.setLocation(400,200);
 //        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+//
 //        Window4_2 b = new Window4_2();
 
 //        Window4_1 a = new Window4_1();
-
+//
 //        Windows4_3 p = new Windows4_3();
         EventQueue.invokeLater(new Runnable() {
             @Override
