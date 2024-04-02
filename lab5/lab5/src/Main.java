@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
@@ -29,9 +30,13 @@ public class Main {
     public static void main(String[] args) throws InterruptedException {
 //        new MyThread(1).start();
 //        new MyThread(2).start();
-//        MainWindow m = new MainWindow("Лото");
-//        m.createWindow();
-
+        EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                MainWindow m = new MainWindow("Лото");
+                m.createWindow();
+            }
+        });
 
     }
 }
