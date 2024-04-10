@@ -1,6 +1,8 @@
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
@@ -8,6 +10,7 @@ public class MainWindow extends JFrame {
     private JPanel mainPanel;
     private FieldGrid mainField;
     private RightPanel rightPanel;
+    private MainController mainController;
 
     public JPanel getMainPanel() {
         return mainPanel;
@@ -23,6 +26,7 @@ public class MainWindow extends JFrame {
 
     public MainWindow(String name){
         super(name);
+        this.mainController = new MainController(this);
     }
     public void createWindow(){
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -38,7 +42,12 @@ public class MainWindow extends JFrame {
         //Боковая панель
         this.rightPanel = new RightPanel();
         this.rightPanel.create();
-
+        this.rightPanel.getStartButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mainController.startCalc();
+            }
+        });
 
         this.mainPanel.add(this.mainField.getMainPanel());
         this.mainPanel.add(this.rightPanel);
